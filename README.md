@@ -12,26 +12,31 @@ moban-web-source-demo/
 │   ├── example-source.json        # 单书源：GET 搜索 + 发现分类（字段最全，推荐先看）
 │   └── example-source-post.json   # 单书源：POST 搜索 + GBK 编码 + 自定义请求头
 └── subscription/
-    ├── sources.json               # 书源订阅：裸数组形态（含上面两个源）
-    └── sources-envelope.json      # 书源订阅：信封形态（subVersion/subName/notice/sources）
+    └── sources.json               # 书源订阅：裸数组形态（含上面两个源）
 ```
 
 ## 快速使用
 
-### 方式一：订阅（一次导入，可更新）
+### 方式一：添加书源订阅（一次导入，可更新）
 
-把本仓库文件的原始 URL 添加到 App：**书源管理 → 添加书源订阅**。
+1. 打开 App：**我的 → 书源管理**；
+2. 点击右下角悬浮按钮，选择 **添加书源订阅**；
+3. 粘贴订阅文件 URL（裸数组，多个书源放在一个 JSON 数组里）：
 
-- 裸数组：
-  `https://raw.githubusercontent.com/Jason-wam/moban-web-source-demo/main/subscription/sources.json`
-- 信封（带版本号和公告）：
-  `https://raw.githubusercontent.com/Jason-wam/moban-web-source-demo/main/subscription/sources-envelope.json`
+`https://raw.githubusercontent.com/Jason-wam/moban-web-source-demo/main/subscription/sources.json`
+
+添加后会立即拉取一次并自动导入其中的书源；之后可在订阅上「立即更新」。
 
 > 国内访问 GitHub 较慢时，可在 URL 前加任意可用的 GitHub 加速前缀，或改用自建 Gitee 镜像。
 
-### 方式二：导入单个书源
+### 方式二：导入单个书源（JSON 粘贴）
 
-复制 `single/` 下某个文件的原始 URL，在 App 中选 **网络导入**；也可以把 JSON 保存到本地后用 **本地导入**。
+App 原生页不提供单文件 / URL 直接导入，需通过内置的**书源管理服务**在浏览器中粘贴 JSON：
+
+1. 在 **书源管理** 页顶栏打开书源管理服务开关，按弹窗提示在同一 Wi‑Fi 下用浏览器访问 `http://手机IP:8894`（也可点地址复制）；
+2. 点击页面上的 **导入**，把 `single/` 下某个文件的内容粘贴进文本框（支持单对象或数组），点 **开始导入**。
+
+> 不想粘贴 JSON 时，也可以在书源管理页直接点 **新建书源**，用表单逐字段填写。
 
 ## JSON 字段说明
 
@@ -129,4 +134,4 @@ URL / 请求体模板变量：
 4. 依次打开详情页、目录页、正文页，用同样方法核对 `detail` / `toc` / `content`。
 5. 页面乱码时加 `"charset": "GBK"`；正文有广告就往 `content.remove` / `content.replace` 里加规则。
 6. 在 App 的书源管理里测试该规则，确认搜索 → 详情 → 目录 → 正文全链路。
-7. 要做成订阅：把多条书源放进数组（或信封的 `sources`），文件传到 GitHub/Gitee，把原始 URL 交给用户添加为订阅；更新文件时递增信封里的 `subVersion`。
+7. 要做成订阅：把多条书源放进一个 JSON 数组，文件传到 GitHub/Gitee，把原始 URL 交给用户添加为订阅；以后更新该文件即可，用户在订阅上「立即更新」获取变化。
