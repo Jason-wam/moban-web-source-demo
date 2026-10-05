@@ -1,0 +1,51 @@
+{
+  "ruleVersion": 1,
+  "bookSourceName": "示例杰奇站",
+  "bookSourceUrl": "https://m.example-jieqi.com",
+  "bookSourceGroup": "教学示例",
+  "enabled": true,
+  "enabledExplore": false,
+  "charset": "GBK",
+  "bookSourceComment": "演示 POST 搜索、GBK 编码与自定义请求头（老杰奇 waps.php 形态）。",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 Mobile"
+  },
+  "search": {
+    "url": "https://m.example-jieqi.com/modules/article/waps.php",
+    "method": "POST",
+    "body": "searchkey={{key}}&page={{page}}",
+    "pageStart": 1,
+    "list": "table.grid tr:gt(0)",
+    "name": "td:nth-child(1) a > @text",
+    "author": "td:nth-child(3) > @text",
+    "detailUrl": "td:nth-child(1) a > @attr(href)",
+    "latestChapter": "td:nth-child(2) a > @text"
+  },
+  "detail": {
+    "url": "",
+    "name": "#info h1 > @text",
+    "author": "#info p:first-of-type a > @text",
+    "coverUrl": "#fmimg img > @attr(src)",
+    "intro": "#intro > @text"
+  },
+  "toc": {
+    "list": "#list dd",
+    "name": "@text",
+    "chapterUrl": "@attr(href)"
+  },
+  "content": {
+    "content": [
+      "#content > @html"
+    ],
+    "remove": [
+      "script",
+      "style",
+      ".ad"
+    ],
+    "replace": [
+      ["首发地址.*", ""],
+      ["\\u00a0", " "]
+    ],
+    "imageStyle": "text"
+  }
+}

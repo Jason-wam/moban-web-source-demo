@@ -1,0 +1,111 @@
+[
+  {
+    "ruleVersion": 1,
+    "bookSourceName": "示例笔趣阁",
+    "bookSourceUrl": "https://www.example-biquge.com",
+    "bookSourceGroup": "教学示例",
+    "enabled": true,
+    "enabledExplore": true,
+    "bookSourceComment": "字段齐全的网络书源示例：GET 搜索 + 发现分类。",
+    "search": {
+      "url": "https://www.example-biquge.com/search.php?q={{key}}&page={{page}}",
+      "method": "GET",
+      "pageStart": 1,
+      "list": ".result-list .result-item",
+      "name": "h3 a > @text",
+      "author": ".author > @text",
+      "detailUrl": "h3 a > @attr(href)",
+      "coverUrl": "img > @attr(data-original)||img > @attr(src)",
+      "intro": ".intro > @text",
+      "latestChapter": ".latest > @text"
+    },
+    "explore": [
+      {
+        "title": "热门推荐",
+        "url": "https://www.example-biquge.com/top/{{page}}.html",
+        "pageStart": 1,
+        "list": ".rank-list li",
+        "name": "a > @text",
+        "detailUrl": "a > @attr(href)"
+      }
+    ],
+    "detail": {
+      "url": "",
+      "name": "meta[property=og:novel:book_name] > @attr(content)||#info h1 > @text",
+      "author": "meta[property=og:novel:author] > @attr(content)||#info p a > @text",
+      "coverUrl": "meta[property=og:image] > @attr(content)||#fmimg img > @attr(src)",
+      "intro": "meta[property=og:description] > @attr(content)||#intro > @text"
+    },
+    "toc": {
+      "list": "#list dd",
+      "name": "@text",
+      "chapterUrl": "@attr(href)"
+    },
+    "content": {
+      "content": [
+        "#content > @html"
+      ],
+      "remove": [
+        "script",
+        "style",
+        ".ad",
+        ".recommend"
+      ],
+      "replace": [
+        ["笔趣阁", ""]
+      ],
+      "imageStyle": "text"
+    }
+  },
+  {
+    "ruleVersion": 1,
+    "bookSourceName": "示例杰奇站",
+    "bookSourceUrl": "https://m.example-jieqi.com",
+    "bookSourceGroup": "教学示例",
+    "enabled": true,
+    "enabledExplore": false,
+    "charset": "GBK",
+    "bookSourceComment": "演示 POST 搜索、GBK 编码与自定义请求头。",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 Mobile"
+    },
+    "search": {
+      "url": "https://m.example-jieqi.com/modules/article/waps.php",
+      "method": "POST",
+      "body": "searchkey={{key}}&page={{page}}",
+      "pageStart": 1,
+      "list": "table.grid tr:gt(0)",
+      "name": "td:nth-child(1) a > @text",
+      "author": "td:nth-child(3) > @text",
+      "detailUrl": "td:nth-child(1) a > @attr(href)",
+      "latestChapter": "td:nth-child(2) a > @text"
+    },
+    "detail": {
+      "url": "",
+      "name": "#info h1 > @text",
+      "author": "#info p:first-of-type a > @text",
+      "coverUrl": "#fmimg img > @attr(src)",
+      "intro": "#intro > @text"
+    },
+    "toc": {
+      "list": "#list dd",
+      "name": "@text",
+      "chapterUrl": "@attr(href)"
+    },
+    "content": {
+      "content": [
+        "#content > @html"
+      ],
+      "remove": [
+        "script",
+        "style",
+        ".ad"
+      ],
+      "replace": [
+        ["首发地址.*", ""],
+        ["\\u00a0", " "]
+      ],
+      "imageStyle": "text"
+    }
+  }
+]
