@@ -80,6 +80,8 @@ moban-web-source-demo/
 | `coverUrl` | 否 | 封面 |
 | `intro` | 否 | 简介 |
 | `latestChapter` | 否 | 最新章节 |
+| `updateStatus` | 否 | 更新状态（如「连载中」「已完结」） |
+| `updateDate` | 否 | 更新日期（如「2024-01-15」「2小时前」） |
 | `nextUrl` | 否 | 页内「下一页」链接；为空时按 URL 中的 `{{page}}` 翻页 |
 
 ### `detail`（详情页）

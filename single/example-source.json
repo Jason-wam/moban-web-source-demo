@@ -17,7 +17,9 @@
     "detailUrl": "h3 a > @attr(href)",
     "coverUrl": "img > @attr(data-original)||img > @attr(src)",
     "intro": ".intro > @text",
-    "latestChapter": ".latest > @text"
+    "latestChapter": ".latest > @text",
+    "updateStatus": ".status > @text",
+    "updateDate": ".update-time > @text"
   },
   "explore": [
     {
@@ -35,7 +37,9 @@
       "list": ".new-list li",
       "name": "a > @text",
       "detailUrl": "a > @attr(href)",
-      "latestChapter": ".latest > @text"
+      "latestChapter": ".latest > @text",
+      "updateStatus": ".status > @text",
+      "updateDate": ".update-time > @text"
     }
   ],
   "detail": {

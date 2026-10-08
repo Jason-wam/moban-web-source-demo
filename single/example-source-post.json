@@ -19,7 +19,9 @@
     "name": "td:nth-child(1) a > @text",
     "author": "td:nth-child(3) > @text",
     "detailUrl": "td:nth-child(1) a > @attr(href)",
-    "latestChapter": "td:nth-child(2) a > @text"
+    "latestChapter": "td:nth-child(2) a > @text",
+    "updateStatus": "td:nth-child(4) > @text",
+    "updateDate": "td:nth-child(5) > @text"
   },
   "detail": {
     "url": "",
